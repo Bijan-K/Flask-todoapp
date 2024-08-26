@@ -3,23 +3,69 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ToDo List</title>
+        <title>Todo List</title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <!-- Custom CSS -->
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .todo-container {
+                max-width: 600px;
+                margin: 2rem auto;
+                padding: 2rem;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .todo-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #e9ecef;
+            }
+            .todo-item:last-child {
+                border-bottom: none;
+            }
+        </style>
     </head>
     <body>
-        <h1>ToDo List</h1>
-        <form action="{{ url_for('add_task') }}" method="POST">
-            <input type="text" name="task" required />
-            <button type="submit">Add Task</button>
-        </form>
-        <ul>
-            {% for task in tasks %}
-            <li>
-                {{ task[1] }}
-                <a href="{{ url_for('delete_task', task_id=task[0]) }}"
-                    >Delete</a
-                >
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="container todo-container">
+            <h1 class="text-center mb-4">ToDo List</h1>
+            <form action="{{ url_for('add_task') }}" method="POST" class="mb-4">
+                <div class="input-group">
+                    <input
+                        type="text"
+                        name="task"
+                        class="form-control"
+                        placeholder="Enter a new task"
+                        required
+                    />
+                    <button type="submit" class="btn btn-primary">
+                        Add Task
+                    </button>
+                </div>
+            </form>
+            <ul class="list-unstyled">
+                {% for task in tasks %}
+                <li class="todo-item">
+                    <span>{{ task[1] }}</span>
+                    <a
+                        href="{{ url_for('delete_task', task_id=task[0]) }}"
+                        class="btn btn-danger btn-sm"
+                        >Delete</a
+                    >
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Bootstrap JS (optional, for certain components) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
