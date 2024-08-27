@@ -3,7 +3,9 @@
 
 windows:
 ```bash
-.\.venv\scripts\activate
+python -m venv .env
+
+.\.env\scripts\activate
 
 pip install -r requirements.txt
 
@@ -12,7 +14,9 @@ python .\app.py
 
 linux:
 ```bash
-source .venv/bin/activate
+python -m venv .env
+
+source .env/bin/activate
 
 pip install -r requirements.txt
 
